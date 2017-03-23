@@ -1,8 +1,6 @@
 public class BrainfuckInterpreter {
     private static BrainfuckContext brainfuckContext;
     private static BrainfuckMemory memory;
-    private String output = "";
-    private int head = 0;
 
     public static void main(String[] args) {
 
@@ -16,9 +14,10 @@ public class BrainfuckInterpreter {
     private static void interprete() {
         while(memory.getInstructionPointer() > brainfuckContext.getSourceCode().length){
             char code = brainfuckContext.getSourceCode()[memory.getInstructionPointer()];
-            memory.getTable().get(code).parse();
+            memory.getTable().get(code).parse(memory);
             memory.setInstructionPointer(memory.getInstructionPointer() +1);
         }
+        System.out.println(memory.getOutput());
     }
 
     private static char[] readSourceCode(String filePath) {

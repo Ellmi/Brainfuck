@@ -1,3 +1,3 @@
 public interface CommandParser {
-    public void parse();
+    public void parse(BrainfuckMemory memory);
 }
